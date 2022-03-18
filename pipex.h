@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 10:45:23 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/18 14:21:22 by akhouya          ###   ########.fr       */
+/*   Updated: 2022/03/18 18:43:39 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ char	**ft_split(char const *s, char c);
 void	frealltab(char **str);
 char	*ft_strdup(char *s);
 void	ft_putstr_fd(char *s, int fd);
-void	put_error(char *s1, char *s2);
+void	put_error(struct attribut attribut, char *s2);
+ void	ft_putchar_fd(char c, int fd);
 #endif

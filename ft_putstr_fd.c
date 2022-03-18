@@ -6,11 +6,11 @@
 /*   By: akhouya <akhouya@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 23:00:57 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/18 14:15:52 by akhouya          ###   ########.fr       */
+/*   Updated: 2022/03/18 18:14:04 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include"pipex.h"
  void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
