@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhouya <akhouya@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 21:52:07 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/18 14:16:43 by akhouya          ###   ########.fr       */
+/*   Created: 2021/11/10 23:00:57 by akhouya           #+#    #+#             */
+/*   Updated: 2022/03/18 14:15:52 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"pipex.h"
-
-char	*ft_strjoin(char *s1, char *s2)
+#include"libft.h"
+ void	ft_putchar_fd(char c, int fd)
 {
-	char	*str;
-	int		i;
-	int		l;
+	write(fd, &c, 1);
+}
 
-	i = 0;
-	l = 0;
-	if (!s1 && !s2)
-		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
-		return (NULL);
-	while (s1[i])
-		str[l++] = s1[i++];
-	i = 0;
-	while (s2[i])
-		str[l++] = s2[i++];
-	str[l] = '\0';
-	return (&str[0]);
+void	ft_putstr_fd(char *s, int fd)
+{
+	if (!s)
+		return ;
+	while (*s)
+	{
+		ft_putchar_fd(*s, fd);
+		s++;
+	}
 }

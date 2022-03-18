@@ -1,86 +1,104 @@
 
 #include "pipex.h"
 
-// char *command_exec(char **command, char **env){
-//     char *s;
-//     command = ft_split(argv[i], ' ');
-//     s = check_path(env, command[0]);
-//     return s;
-// }
-int main(int    argc, char*    argv[], char   **env) {
-    int fd[2];
-    pid_t pid;
-    int fd_in;
-    fd_in = 0;
-    int i;
-    i = 2;
-    char *s;
-    char **command;
-    int tab[1024];
-    if(argc < 5)
-        return 0;
-    while(i <= argc - 2)
-    {
-        command = ft_split(argv[i], ' ');
-        s = check_path(env, command[0]);
-        printf("%s\n", s);
-        pipe(fd);
-        if((pid = fork()) == -1)
-            exit(1);
-        if(pid == 0)
-        {
-            if(i == 2)
-            {
-                int file1 = open(argv[1], O_RDWR);
-                if(s == NULL)
-                {
-                    printf("pipex: %s: command not found\n", argv[i]);
-                    exit(0);
-                }
-                dup2(file1, 0);
-                dup2(fd[1], 1);
-                close(fd[0]);
-                execve(s, command, env);
-            }
-            else if(i == argc - 2)
-            {
-                int file2 = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
-                if(s == NULL)
-                {
-                    printf("pipex: %s: command not found\n", argv[i]);
-                    exit(0);
-                }
-                dup2(fd_in, 0);
-                dup2(file2, 1);
-                close(fd[1]);
-                close(fd[0]);
-                execve(s, command, env);
-            }
-            else
-            {
-                if(s == NULL)
-                {
-                    printf("pipex: %s: command not found\n", argv[i]);
-                    exit(0);
-                }
-                dup2(fd_in, 0);
-                dup2(fd[1], 1);
-                close(fd[0]);
-                execve(s, command, env);
-            }
-        }
-        else{
-            close(fd[1]);
-            fd_in = fd[0];
-            i++;
-            tab[i - 3] = fd[0];
-            
-        }
+void	put_error(char *s1, char *s2)
+{
+	char *s;
+	s = ft_strjoin(s1, s2);
+	ft_putstr_fd(s, 2);
+	exit(1);
+}
 
-    }
-    while(wait(NULL) != -1)
-    i = i - 3;
-    while(i >= 0)
-        close(tab[i--]);
-    
+void	in_child(struct attribut	attribut, char **argv, char **env,int argc)
+{
+	if(attribut.s == NULL)
+		put_error("pipex: %s: command not found\n", argv[attribut.i]);
+	dup2(attribut.in, 0);
+	dup2(attribut.fd[1], 1);
+	close(attribut.fd[0]);
+	execve(attribut.s, attribut.command, env);
+}
+
+void	out_child(struct attribut	attribut, char **argv, char **env,int argc)
+{
+	attribut.out = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if(attribut.s == NULL)
+		put_error("pipex: %s: command not found\n", argv[attribut.i]);
+	dup2(attribut.fd_in, 0);
+	dup2(attribut.out, 1);
+	close(attribut.fd[1]);
+	close(attribut.fd[0]);
+	execve(attribut.s, attribut.command, env);
+}
+
+void	pipe_child(struct attribut	attribut, char **argv, char **env)
+{
+	if(attribut.s == NULL)
+	{
+		put_error("pipex: %s: command not found\n", argv[attribut.i]);
+	}
+	dup2(attribut.fd_in, 0);
+	dup2(attribut.fd[1], 1);
+	close(attribut.fd[0]);
+	execve(attribut.s, attribut.command, env);
+}
+
+void parent_poc(struct attribut	*attribut)
+{
+	close(attribut->fd[1]);
+	attribut->fd_in = attribut->fd[0];
+	attribut->i++;
+	attribut->tab[attribut->i - 3] = attribut->fd[0];  
+}
+
+void	command_evec(struct attribut	*attribut, char **env,char **argv)
+{
+	if (!(strcmp(argv[attribut->i],"")))
+		exit(1);
+	if (access(argv[attribut->i], F_OK) == 0)
+	{
+		attribut->command = ft_split(argv[attribut->i], ' ');
+		attribut->s = attribut->command[0];
+		return ;
+	}
+	attribut->command = ft_split(argv[attribut->i], ' ');
+	attribut->s = check_path(env, attribut->command[0]);
+}
+
+void	child_proc(struct attribut attribut, char	**argv, char	**env, int	argc)
+{
+	if(attribut.i == 2)
+		in_child(attribut, argv, env, argc);
+	else if(attribut.i == argc - 2)
+		out_child(attribut, argv, env, argc);
+	else
+		pipe_child(attribut, argv, env);
+}
+
+int	main(int	argc, char*	argv[], char   **env) 
+{
+	struct attribut	attribut;
+
+	attribut.fd_in = 0;
+	attribut.in = open(argv[1], O_RDWR);
+	attribut.i = 2;
+	if (attribut.in == -1)
+		put_error("pipex: no such file or directory: %s", argv[1]);
+	if(argc < 5)
+		return 1;
+	while(attribut.i <= argc - 2)
+	{
+		command_evec(&attribut, env, argv);
+		pipe(attribut.fd);
+		if((attribut.pid = fork()) == -1)
+			return 1;
+		if(attribut.pid == 0)
+			child_proc(attribut, argv, env, argc);
+		else
+			parent_poc(&attribut);
+	}
+	while(wait(NULL) != -1)
+	attribut.i = attribut.i - 3;
+	while(attribut.i >= 0)
+		close(attribut.tab[attribut.i--]);
 }
