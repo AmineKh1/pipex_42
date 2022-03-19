@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 10:45:23 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/18 18:43:39 by akhouya          ###   ########.fr       */
+/*   Updated: 2022/03/19 17:31:33 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,6 @@ char	*ft_strdup(char *s);
 void	ft_putstr_fd(char *s, int fd);
 void	put_error(struct attribut attribut, char *s2);
  void	ft_putchar_fd(char c, int fd);
+ char    *ft_strjoin_free(char *s, char c);
+char *get_next_line(int fd);
 #endif

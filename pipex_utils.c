@@ -28,6 +28,8 @@ char *check_path(char **envp, char *s)
         if(ft_strncmp(envp[i], "PATH", 4) == 0)
             break;
     }
+    if (envp[i] == NULL)
+        exit(1);
     path = &envp[i][5];
     pwd = ft_split(path,':');
     i= -1;

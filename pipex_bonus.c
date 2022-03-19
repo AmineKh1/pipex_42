@@ -2,6 +2,30 @@
 #include "pipex.h"
 #include <string.h>
 
+void	pipe_herdoc(struct attribut *attribut)
+{
+	char *s;
+	char *str;
+
+	s = get_next_line(0);
+	str = ft_strdup("");
+	while(strcmp("herdoc\n", s) != 0)
+	{
+		str = ft_strjoin(str, s);
+		free(s);
+		s = get_next_line(0);
+	}
+	if (strcmp("", str) == 0)
+	{
+		free(s);
+		free(str);
+		str = NULL;
+	}
+	write(attribut->in, str, ft_strlen(str));
+	free(str);
+	free(s);
+}
+
 void	put_error(struct attribut attribut, char *s2)
 {
 	if (attribut.s == NULL)
@@ -92,7 +116,15 @@ int	main(int	argc, char*	argv[], char   **env)
 	struct attribut	attribut;
 
 	attribut.fd_in = 0;
-	attribut.in = open(argv[1], O_RDWR);
+	if(strcmp("herdoc", argv[1]) == 0)
+	{
+		attribut.in = open("herdoc.txt", O_RDWR | O_CREAT | O_TRUNC , 0644);
+		pipe_herdoc(&attribut);
+		close(attribut.in);
+		attribut.in = open("herdoc.txt", O_RDWR);
+	}
+	else
+		attribut.in = open(argv[1], O_RDWR);
 	attribut.i = 2;
 	if (argc < 5)
 		return (1);
@@ -113,4 +145,6 @@ int	main(int	argc, char*	argv[], char   **env)
 	attribut.i = attribut.i - 3;
 	while (attribut.i >= 0)
 		close(attribut.tab[attribut.i--]);
+	if(strcmp("herdoc", argv[1]) == 0)
+		unlink("herdoc.txt");
 }
