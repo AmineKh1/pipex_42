@@ -13,6 +13,7 @@ libft
 main.c
 out
 outfile
+outt
 pipex.h
 pipex_bonus.c
 pipex_utils.c

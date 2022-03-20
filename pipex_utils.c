@@ -29,7 +29,9 @@ char *check_path(char **envp, char *s)
             break;
     }
     if (envp[i] == NULL)
-        exit(1);
+    {
+         return NULL;
+    }
     path = &envp[i][5];
     pwd = ft_split(path,':');
     i= -1;

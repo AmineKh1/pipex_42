@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 10:45:23 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/19 17:31:33 by akhouya          ###   ########.fr       */
+/*   Updated: 2022/03/20 13:57:19 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ struct attribut {
     int i;
     int in;
     int out;
+    int tab_err[255];
 } t_attribut;
 char *check_path(char **envp, char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
