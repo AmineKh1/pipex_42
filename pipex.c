@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhouya <akhouya@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/20 18:24:12 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/22 11:38:59 by akhouya          ###   ########.fr       */
+/*   Created: 2022/03/22 11:38:10 by akhouya           #+#    #+#             */
+/*   Updated: 2022/03/22 11:38:51 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char *argv[], char **env)
 {
 	struct attribut	attribut;
 
-	if (argc < 5)
+	if (argc != 5)
 		exit(1);
 	table(&attribut);
 	handling_errors(&attribut, argc, argv);

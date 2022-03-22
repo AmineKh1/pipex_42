@@ -6,30 +6,29 @@
 /*   By: akhouya <akhouya@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 21:52:15 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/20 18:13:52 by akhouya          ###   ########.fr       */
+/*   Updated: 2022/03/21 10:30:12 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"../pipex.h"
 
-
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-    size_t	i;
-    char	*ptr_d;
-    char	*ptr_s;
+	size_t	i;
+	char	*ptr_d;
+	char	*ptr_s;
 
-    i = 0;
-    ptr_d = (char *) dest;
-    ptr_s = (char *) src;
-    if (!dest && !src)
-        return (NULL);
-    while (i < n)
-    {
-        *ptr_d++ = *ptr_s++;
-        i++;
-    }
-    return (dest);
+	i = 0;
+	ptr_d = (char *) dest;
+	ptr_s = (char *) src;
+	if (!dest && !src)
+		return (NULL);
+	while (i < n)
+	{
+		*ptr_d++ = *ptr_s++;
+		i++;
+	}
+	return (dest);
 }
 
 char	*ft_strdup(char *s)
