@@ -6,7 +6,7 @@
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:37:11 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/31 13:56:42 by akhouya          ###   ########.fr       */
+/*   Updated: 2022/03/31 18:44:24 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	handling_errors(t_attribut *attribut, int argc, char **argv)
 		attribut->i = 2;
 		attribut->h = 0;
 	}
-	
 	if (attribut->in == -1)
 		put_error_fd(argv[1]);
 	if (attribut->out == -1)
