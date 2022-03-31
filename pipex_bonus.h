@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 10:45:23 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/31 14:22:35 by akhouya          ###   ########.fr       */
+/*   Created: 2022/03/30 13:06:45 by akhouya           #+#    #+#             */
+/*   Updated: 2022/03/31 18:32:04 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>

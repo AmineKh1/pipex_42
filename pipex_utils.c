@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhouya <akhouya@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:29:37 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/22 11:39:28 by akhouya          ###   ########.fr       */
+/*   Updated: 2022/03/31 13:55:41 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*check_path(char **envp, char *s)
 	return (path);
 }
 
-void	table(struct attribut *attribut)
+void	table(t_attribut *attribut)
 {
 	int	i;
 
@@ -64,7 +64,7 @@ void	table(struct attribut *attribut)
 		attribut->tab_err[i++] = 0;
 }
 
-void	pipe_herdoc(struct attribut *attribut, char **argv)
+void	pipe_herdoc(t_attribut *attribut, char **argv)
 {
 	char	*s;
 	char	*str;
@@ -91,7 +91,7 @@ void	pipe_herdoc(struct attribut *attribut, char **argv)
 	free(herdoc);
 }
 
-void	close_pipe(struct attribut *attribut, char **argv)
+void	close_pipe(t_attribut *attribut, char **argv)
 {
 	attribut->i = attribut->i - 3 - attribut->h;
 	while (attribut->i >= 0)

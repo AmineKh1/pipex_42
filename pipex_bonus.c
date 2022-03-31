@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhouya <akhouya@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:24:12 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/22 11:38:59 by akhouya          ###   ########.fr       */
+/*   Updated: 2022/03/31 13:56:24 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char *argv[], char **env)
 {
-	struct attribut	attribut;
+	t_attribut	attribut;
 
 	if (argc < 5)
 		exit(1);

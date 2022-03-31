@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: akhouya <akhouya@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: akhouya <akhouya@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/20 18:37:11 by akhouya           #+#    #+#             */
-/*   Updated: 2022/03/22 11:37:10 by akhouya          ###   ########.fr       */
+/*   Updated: 2022/03/31 13:56:42 by akhouya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	put_error(struct attribut attribut, char *s2)
+void	put_error(t_attribut attribut, char *s2)
 {
 	if (attribut.s == NULL)
 	{
@@ -37,7 +37,7 @@ void	put_error_fd_out(char *s2)
 	ft_putstr_fd("\n", 2);
 }
 
-void	command_evec(struct attribut *attribut, char **env, char **argv)
+void	command_evec(t_attribut *attribut, char **env, char **argv)
 {
 	if (!(ft_strncmp(argv[attribut->i], "", 1)))
 	{
@@ -59,7 +59,7 @@ void	command_evec(struct attribut *attribut, char **env, char **argv)
 		attribut->tab_err[127] = 1;
 }
 
-void	handling_errors(struct attribut *attribut, int argc, char **argv)
+void	handling_errors(t_attribut *attribut, int argc, char **argv)
 {
 	attribut->out = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (ft_strncmp("here_doc", argv[1], 8) == 0)
